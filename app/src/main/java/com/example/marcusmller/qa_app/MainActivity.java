@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,11 +35,11 @@ public class MainActivity extends AppCompatActivity   {
     ListView lv01;
 
     static int listPosition;
-
-
     String tempfrage = "";
     public static int Temptemo=0;
     public static final List valueList = new ArrayList<String>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +48,15 @@ public class MainActivity extends AppCompatActivity   {
        // txtView01 = (TextView) findViewById(R.id.txtView01);
         lv01 = (ListView) findViewById(R.id.lv01);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // get the reference of Toolbar
+        toolbar.setTitle("Q&A App"); // set Title for Toolbar
+        toolbar.setLogo(R.drawable.android); // set logo for Toolbar
+        setSupportActionBar(toolbar); // Setting/replace toolbar as the ActionBar
+
 
 
         final ListAdapter adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, valueList);
+
         btnFrage = (Button) findViewById(R.id.btnFrage);
         btnFrage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +64,7 @@ public class MainActivity extends AppCompatActivity   {
                 startActivity(new Intent(MainActivity.this, FrageStellen.class));
             }
         });
+
 
 
 
@@ -66,7 +77,7 @@ public class MainActivity extends AppCompatActivity   {
             }
         });
 
-        lv01 = (ListView) findViewById(R.id.lv01);
+        lv01 = (ListView) findViewById(R.id.lv01);                                          //Durch klicken auf das Listitem öffent das Antworten fenster
         lv01.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -78,6 +89,8 @@ public class MainActivity extends AppCompatActivity   {
 
 
     }
+
+
 
 
 }
