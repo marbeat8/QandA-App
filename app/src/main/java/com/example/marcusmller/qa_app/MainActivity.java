@@ -16,6 +16,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,13 +42,40 @@ public class MainActivity extends AppCompatActivity   {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //String inhalt = f.doInBackground();
         setContentView(R.layout.activity_main);
        // txtView01 = (TextView) findViewById(R.id.txtView01);
         lv01 = (ListView) findViewById(R.id.lv01);
 
 
 
-        final ListAdapter adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, valueList);
+        ListAdapter adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, valueList);
+        final TextView textView4 = (TextView) findViewById(R.id.textView4);
+        new FragenAusDatenbank(textView4).execute("someParams");
+
+        String [] aktienlisteArray = {
+                "Adidas - Kurs: 73,45 €",
+                "Allianz - Kurs: 145,12 €",
+                "BASF - Kurs: 84,27 €",
+                "Bayer - Kurs: 128,60 €",
+                "Beiersdorf - Kurs: 80,55 €",
+                "BMW St. - Kurs: 104,11 €",
+                "Commerzbank - Kurs: 12,47 €",
+                "Continental - Kurs: 209,94 €",
+                "Daimler - Kurs: 84,33 €"
+        };
+/*
+        List <String> aktienListe = new ArrayList<>(Arrays.asList(aktienlisteArray));
+        ArrayList<String> werte = new ArrayList();
+        ArrayAdapter <String> aktienlisteAdapter =
+                new ArrayAdapter<String>(this, // Die aktuelle Umgebung (diese Activity)
+                        R.layout.activity_main, // ID der XML-Layout Datei
+                        R.id.lv01, // ID des TextViews
+                        aktienListe); // Beispieldaten in einer ArrayList
+        adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, werte);
+        lv01.setAdapter(aktienlisteAdapter);
+        //ListView lv01 = (ListView) rootView.findViewById(R.id.listview_aktienliste);
+        */
         btnFrage = (Button) findViewById(R.id.btnFrage);
         btnFrage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,9 +104,5 @@ public class MainActivity extends AppCompatActivity   {
                 startActivity(new Intent(MainActivity.this, Antwort.class));
             }
         });
-
-
     }
-
-
 }
