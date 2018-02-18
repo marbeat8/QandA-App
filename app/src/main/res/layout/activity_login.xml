@@ -19,21 +19,22 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextPass"
+        android:layout_alignStart="@+id/editTextPass"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="98dp"
+        android:layout_marginTop="97dp"
         android:ems="10"
         android:hint="E-Mail"
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTextPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/editTextMail"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
         android:ems="10"
@@ -44,9 +45,9 @@
         android:id="@+id/btnAbbrechen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_below="@+id/editText2"
+        android:layout_alignLeft="@+id/editTextPass"
+        android:layout_alignStart="@+id/editTextPass"
+        android:layout_below="@+id/editTextPass"
         android:layout_marginTop="62dp"
         android:text="Abbrechen" />
 
@@ -56,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btnAbbrechen"
         android:layout_alignBottom="@+id/btnAbbrechen"
-        android:layout_alignEnd="@+id/editText2"
-        android:layout_alignRight="@+id/editText2"
+        android:layout_alignEnd="@+id/editTextPass"
+        android:layout_alignRight="@+id/editTextPass"
         android:text="Anmelden" />
 </RelativeLayout>
