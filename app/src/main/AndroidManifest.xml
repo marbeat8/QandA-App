@@ -9,8 +9,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        android:autoLink="web|email"
+        android:linksClickable="true"
+    android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".FrageStellen"
             android:theme="@style/AppTheme.CustomTheme" />
@@ -26,7 +28,12 @@
         </activity>
         <activity
             android:name=".About"
-            android:theme="@style/AppTheme.CustomTheme"></activity>
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity android:name=".FragmentOne" />
+        <activity android:name=".FragmentTwo"></activity>
+        <activity android:name=".AddLink"
+            android:theme="@style/AppTheme.CustomTheme">
+        </activity>
     </application>
 
 </manifest>

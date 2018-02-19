@@ -26,9 +26,9 @@ public class FrageStellen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                MainActivity.list.add(editText01.getText().toString());  //Frage in Liste stellen (bzw. aus datenbank lesen und in liste stellen)
+                FragmentOne.list.add(editText01.getText().toString());  //Frage in Liste stellen (bzw. aus datenbank lesen und in liste stellen)
                 editText01.setText("");
-                MainActivity.adapter.notifyDataSetChanged();
+                FragmentOne.adapter.notifyDataSetChanged();
 
                 finish();
             }

@@ -2,32 +2,23 @@ package com.example.marcusmller.qa_app;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity   {
 
-    Button btnFrage;
-    ImageButton imageBtnCloseMain;
-    ListView lv01;
-    static int listPosition;
 
-    static ArrayList<String> list = new ArrayList<String>();
-    static ArrayAdapter<String> adapter;
 
 
     @Override
@@ -39,40 +30,47 @@ public class MainActivity extends AppCompatActivity   {
         setSupportActionBar(topToolBar);
 
 
-        lv01 = (ListView) findViewById(R.id.lv01);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
 
-        /** Setting the adapter to the ListView */
-        lv01.setAdapter(adapter);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new FragmentOne(), "Q&A");
+        adapter.addFragment(new FragmentTwo(), "Links");
+        viewPager.setAdapter(adapter);
 
-        btnFrage = (Button) findViewById(R.id.btnFrage);
-        btnFrage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, FrageStellen.class));       //start der Frage-Activity
-            }
-        });
-
-        imageBtnCloseMain = (ImageButton) findViewById(R.id.imageBtnCloseMain);
-        imageBtnCloseMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                System.exit(0);
-            }
-        });
-
-
-        lv01 = (ListView) findViewById(R.id.lv01);
-        lv01.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object listItem = lv01.getItemAtPosition(position);
-                listPosition = position;
-                startActivity(new Intent(MainActivity.this, Antwort.class));
-            }
-        });
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
+
+    // Adapter for the viewpager using FragmentPagerAdapter
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+
 
     //Toolbar
     @Override

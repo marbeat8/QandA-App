@@ -25,22 +25,22 @@ public class Antwort extends AppCompatActivity {
 
         editTextAntwort = (EditText) findViewById(R.id.editTextAntwort);
 
-        btnSave = (Button) findViewById(R.id.btnSave);
+        btnSave = (Button) findViewById(R.id.btnLink);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String frage = MainActivity.list.get(MainActivity.listPosition);
-                MainActivity.list.remove(MainActivity.listPosition);                //alten eintrag löschen
-                MainActivity.list.add(MainActivity.listPosition,frage+" ✔"+"\n\r"+"-"+editTextAntwort.getText().toString());    // neuen eintrage hinzufügen
+                String frage = FragmentOne.list.get(FragmentOne.listPosition);
+                FragmentOne.list.remove(FragmentOne.listPosition);                //alten eintrag löschen
+                FragmentOne.list.add(FragmentOne.listPosition,frage+" ✔"+"\n\r"+"⇒ "+editTextAntwort.getText().toString());    // neuen eintrage hinzufügen
                 editTextAntwort.setText("");                        // clear Textfeld
-                MainActivity.adapter.notifyDataSetChanged();        // Liste aktualisieren
+                FragmentOne.adapter.notifyDataSetChanged();        // Liste aktualisieren
 
                 finish();
             }
         });
 
-        imageBtnClose2 = (ImageButton) findViewById(R.id.imageBtnClose2);
+        imageBtnClose2 = (ImageButton) findViewById(R.id.imageBtnClose3);
         imageBtnClose2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +49,7 @@ public class Antwort extends AppCompatActivity {
         });
 
         // Auf welche Frage wird geantwortet!
-        String frage = String.valueOf(MainActivity.list.get(MainActivity.listPosition));
+        String frage = String.valueOf(FragmentOne.list.get(FragmentOne.listPosition));
         txtViewAntwort2 = (TextView) findViewById(R.id.txtViewAntwort2);
         txtViewAntwort2.setText(frage);
 

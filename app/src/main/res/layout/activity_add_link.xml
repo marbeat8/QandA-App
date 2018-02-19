@@ -14,7 +14,7 @@
         android:layout_alignRight="@+id/btnLink"
         android:layout_below="@+id/imageBtnClose3"
         android:layout_marginTop="10dp"
-        android:text="Antworte auf die Frage:"
+        android:text="Füge deinen Link hinzu!"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -42,22 +42,36 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editTextAntwort"
+        android:id="@+id/editTextLink01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtViewAntwort2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
+        android:layout_alignBottom="@+id/txtViewAntwort2"
+        android:layout_alignLeft="@+id/editTextLink02"
+        android:layout_alignStart="@+id/editTextLink02"
         android:ems="10"
+        android:hint="Beschreibung"
         android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextLink02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextLink01"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:autoLink="web|email"
+        android:ems="10"
+        android:hint="Link"
+        android:inputType="text"
+        android:linksClickable="true" />
 
     <Button
         android:id="@+id/btnLink"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/editTextLink02"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:text="@string/answer" />
+        android:layout_marginTop="24dp"
+        android:text="@string/addLink" />
 
 </RelativeLayout>
