@@ -6,12 +6,13 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="48dp"
         android:text="Nützliche Links"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="30dp"
         android:textStyle="bold" />
@@ -36,14 +37,14 @@
 
     <TextView
         android:id="@+id/textViewLink"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
-        android:text="TextView"
+        android:text="Du kennst eine Interessante Internetseite\noder einen nützlichen Link?\nDann teile ihn mit deinen Kommilitonen!"
         android:textAlignment="center"
-        tools:text="Du kennst eine Interessante Internetseite\noder einen nützlichen Link?\nDann teile ihn mit deinen Kommilitonen!" />
+        android:textColor="@android:color/black" />
 
 
 </RelativeLayout>
