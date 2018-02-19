@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/about_color">
+
+    <ImageButton
+        android:id="@+id/imageBtnClose"
+        style="@android:style/Widget.ImageButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <TextView
+        android:id="@+id/txtAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageBtnClose"
+        android:layout_centerHorizontal="true"
+        android:text="@string/ueberuns"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtAbout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtAbout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="Projekt Software Engineering II" />
+
+    <TextView
+        android:id="@+id/txtAbout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtAbout3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:text="Marcus Müller\nFrederik Schröder\nLaura Merten\nJonas Stolz" />
+
+    <TextView
+        android:id="@+id/txtAbout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtAbout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="77dp"
+        android:text="
+        ©Copyright 2018, alle Rechte vorbehalten.\n
+        Jegliche Vervielfältigung oder Weiterverbreitung\n
+        in jedem Medium als Ganzes oder in Teilen\n
+        bedarf der schriftlichen Zustimmung der\n
+        Projektverandwortlichen!"
+        android:textAlignment="center"
+        android:textSize="10sp" />
+
+</RelativeLayout>
