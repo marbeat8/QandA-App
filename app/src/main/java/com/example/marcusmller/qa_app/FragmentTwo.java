@@ -14,12 +14,6 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Anu on 22/04/17.
- */
-
-
-
 public class FragmentTwo extends Fragment implements View.OnClickListener {
 
     public FragmentTwo() {
@@ -40,32 +34,29 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.activity_fragment_two, container, false);
 
-
-
         lvLink = (ListView) v.findViewById(R.id.lvLink);
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
         lvLink.setAdapter(adapter);
-
-
 
         lvLink.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object listItem = lvLink.getItemAtPosition(position);
                 listPosition = position;
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
-                startActivity(browserIntent);
+                String url = listItem.toString().substring(listItem.toString().lastIndexOf("►")+1).toString();
+                if (!url.startsWith("http://") && !url.startsWith("https://"))
+                    url = "http://" + url;
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);       //öffnet Browserfenster
 
             }
         });
-
 
         Button b = v.findViewById(R.id.btnLink);
         b.setOnClickListener(this);
         return v;
 
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -73,8 +64,6 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), AddLink.class);
                 startActivity(intent);
                 break;
-
-
         }
     }
 }

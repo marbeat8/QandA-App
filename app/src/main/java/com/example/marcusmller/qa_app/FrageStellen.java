@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class FrageStellen extends AppCompatActivity {
 
     Button btnFrageStellen;
@@ -19,6 +22,12 @@ public class FrageStellen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragestellen);
 
+        final Calendar cal = Calendar.getInstance();
+
+        final int dayofyear = cal.get(Calendar.DAY_OF_YEAR);
+        final int year = cal.get(Calendar.YEAR);
+        final int dayofweek = cal.get(Calendar.DAY_OF_WEEK);
+        final int dayofmonth = cal.get(Calendar.DAY_OF_MONTH);
         editText01 = (EditText) findViewById(R.id.editText01);
 
         btnFrageStellen = (Button) findViewById(R.id.btnFrageStellen);
@@ -26,7 +35,7 @@ public class FrageStellen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                FragmentOne.list.add(editText01.getText().toString());  //Frage in Liste stellen (bzw. aus datenbank lesen und in liste stellen)
+                FragmentOne.list.add(Login.eingabeMail+" am "+dayofmonth+"."+dayofweek+"."+year+":\n"+editText01.getText().toString());  //Frage in Liste stellen (bzw. aus datenbank lesen und in liste stellen)
                 editText01.setText("");
                 FragmentOne.adapter.notifyDataSetChanged();
 

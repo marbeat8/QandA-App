@@ -41,6 +41,7 @@ public class Login extends AppCompatActivity {
     Button btnLogin;
     EditText txtMail;
     EditText txtPass;
+    public static String eingabeMail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class Login extends AppCompatActivity {
                 txtMail = (EditText) findViewById(R.id.editTextMail);
                 txtPass = (EditText) findViewById(R.id.editTextPass);
 
-                final String eingabeMail = txtMail.getText().toString();
+                eingabeMail = txtMail.getText().toString();
                 final String eingabePass = txtPass.getText().toString();
 
                 Map<String,Object> params = new LinkedHashMap<>();
@@ -102,7 +103,6 @@ public class Login extends AppCompatActivity {
 
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
-                    // System.exit(0);
                 }
             }
         });

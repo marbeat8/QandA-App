@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity   {
             return mFragmentTitleList.get(position);
         }
     }
-
-
     //Toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,15 +83,6 @@ public class MainActivity extends AppCompatActivity   {
         return super.onOptionsItemSelected(item);
     }
 }
-
-
-
-
-
-
-
-
-
 
 
      /*      Element durch Button in Liste hinzufügen
