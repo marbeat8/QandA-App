@@ -48,14 +48,12 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
                     url = "http://" + url;
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(browserIntent);       //öffnet Browserfenster
-
             }
         });
 
         Button b = v.findViewById(R.id.btnLink);
         b.setOnClickListener(this);
         return v;
-
     }
     @Override
     public void onClick(View v) {
