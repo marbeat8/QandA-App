@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.text.TextWatcher;
+import android.text.Editable;
 
 import java.util.ArrayList;
 
@@ -22,7 +25,6 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
 
     ListView lvLink;
     static int listPosition;
-
     static ArrayList<String> list = new ArrayList<String>();
     static ArrayAdapter<String> adapter;
 
@@ -33,6 +35,7 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.activity_fragment_two, container, false);
+
 
         lvLink = (ListView) v.findViewById(R.id.lvLink);
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
@@ -51,6 +54,7 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
             }
         });
 
+
         Button b = v.findViewById(R.id.btnLink);
         b.setOnClickListener(this);
         return v;
@@ -64,4 +68,5 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
 }

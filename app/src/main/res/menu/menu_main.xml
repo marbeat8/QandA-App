@@ -5,4 +5,10 @@
     <item
         android:id="@+id/about"
         android:title="@string/action_about" ></item>
+    <item
+        android:id="@+id/search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/search_title"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom" />
 </menu>

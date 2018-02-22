@@ -9,4 +9,6 @@
     <string name="lblBtnAdd">Add</string>
     <string name="answer">Antworten</string>
     <string name="addLink">Link hinzufügen</string>
+    <string name="cancle">Abbrechen</string>
+    <string name="search_title">Suche</string>
 </resources>

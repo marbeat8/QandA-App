@@ -11,18 +11,26 @@
         android:supportsRtl="true"
         android:autoLink="web|email"
         android:linksClickable="true"
-    android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity" />
         <activity
             android:name=".FrageStellen"
             android:theme="@style/AppTheme.CustomTheme" />
         <activity
             android:name=".Antwort"
-            android:theme="@style/AppTheme.CustomTheme" />
+            android:theme="@style/AppTheme"
+            android:label="Antwort"
+            android:parentActivityName=".MainActivity" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
+        </activity>
+
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,7 +38,10 @@
             android:name=".About"
             android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".FragmentOne" />
-        <activity android:name=".FragmentTwo"></activity>
+        <activity android:name=".FragmentTwo"
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
         <activity android:name=".AddLink"
             android:theme="@style/AppTheme.CustomTheme">
         </activity>
