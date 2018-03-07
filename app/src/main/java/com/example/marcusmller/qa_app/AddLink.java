@@ -46,7 +46,6 @@ public class AddLink extends AppCompatActivity {
                                     dialog.cancel();
                                 }
                             });
-
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
 
@@ -56,7 +55,6 @@ public class AddLink extends AppCompatActivity {
                     editTextLink01.setText("");
                     editTextLink02.setText("");
                     FragmentTwo.adapter.notifyDataSetChanged();
-
                     finish();
                 }
             }
