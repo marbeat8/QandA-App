@@ -51,7 +51,7 @@ public class AddLink extends AppCompatActivity {
 
                 }else {
 
-                    FragmentTwo.list.add(editTextLink01.getText().toString() + "\n" + "►" + editTextLink02.getText().toString());  //Frage in Liste stellen (bzw. aus datenbank lesen und in liste stellen)
+                    FragmentTwo.list.add(Login.eingabeMail+":"+"\n"+editTextLink01.getText().toString() + "\n" + "►" + editTextLink02.getText().toString());  //Frage in Liste stellen (bzw. aus datenbank lesen und in liste stellen)
                     editTextLink01.setText("");
                     editTextLink02.setText("");
                     FragmentTwo.adapter.notifyDataSetChanged();
