@@ -38,10 +38,7 @@
             android:name=".About"
             android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".FragmentOne" />
-        <activity android:name=".FragmentTwo"
-            android:windowSoftInputMode="stateHidden">
-
-        </activity>
+        <activity android:name=".FragmentTwo"/>
         <activity android:name=".AddLink"
             android:theme="@style/AppTheme.CustomTheme">
         </activity>

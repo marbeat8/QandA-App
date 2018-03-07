@@ -8,8 +8,9 @@
         android:id="@+id/btnLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewLink"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
         android:text="Eintrag hinzufügen" />
 
     <ListView
@@ -19,18 +20,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/btnLink"
-        android:layout_marginTop="30dp" />
-
-    <TextView
-        android:id="@+id/textViewLink"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tabs"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
-        android:text="Du kennst eine Interessante Internetseite\noder einen nützlichen Link?\nDann teile ihn mit deinen Kommilitonen!"
-        android:textAlignment="center"
-        android:textColor="@android:color/black" />
+        android:layout_marginTop="20dp" />
 
 
 </RelativeLayout>

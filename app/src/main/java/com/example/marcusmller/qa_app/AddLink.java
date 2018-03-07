@@ -1,5 +1,8 @@
 package com.example.marcusmller.qa_app;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -14,6 +17,7 @@ public class AddLink extends AppCompatActivity {
     ImageButton imageBtnClose3;
     EditText editTextLink01;
     EditText editTextLink02;
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +32,33 @@ public class AddLink extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                FragmentTwo.list.add(editTextLink01.getText().toString()+"\n"+"►"+editTextLink02.getText().toString());  //Frage in Liste stellen (bzw. aus datenbank lesen und in liste stellen)
-                editTextLink01.setText("");
-                editTextLink02.setText("");
-                FragmentTwo.adapter.notifyDataSetChanged();
+                if ((editTextLink01.getText().toString().length() == 0) || (editTextLink02.getText().toString().length() == 0))  {
+                    // Leere Antwort
+                    //Fehlermeldung
+                    AlertDialog.Builder builder1;
+                    builder1 = new AlertDialog.Builder(context);
+                    builder1.setMessage("Bitte Beschreibung und Link eingeben!");
+                    builder1.setCancelable(true);
+                    builder1.setPositiveButton(
+                            "ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
 
-                finish();
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+
+                }else {
+
+                    FragmentTwo.list.add(editTextLink01.getText().toString() + "\n" + "►" + editTextLink02.getText().toString());  //Frage in Liste stellen (bzw. aus datenbank lesen und in liste stellen)
+                    editTextLink01.setText("");
+                    editTextLink02.setText("");
+                    FragmentTwo.adapter.notifyDataSetChanged();
+
+                    finish();
+                }
             }
         });
 
@@ -45,7 +70,6 @@ public class AddLink extends AppCompatActivity {
                 finish();
             }
         });
-
         DisplayMetrics dm = new DisplayMetrics();                           //Größe des Fensters
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
