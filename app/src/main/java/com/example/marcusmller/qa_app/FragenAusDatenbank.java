@@ -62,7 +62,7 @@ public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
         dataBuffer.append(POST_PARAM_KEYVALUE_SEPARATOR);
         dataBuffer.append(URLEncoder.encode(DESTINATION_METHOD, "UTF-8"));
         //Adresse der PHP Schnittstelle für die Verbindung zur MySQL Datenbank
-        URL url = new URL("http://84.23.78.37/reader.php");
+        URL url = new URL("https://84-23-78-37.blue.kundencontroller.de:8443/reader.php");
         conn = url.openConnection();
         conn.setDoOutput(true);
         OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
