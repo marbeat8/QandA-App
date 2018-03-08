@@ -85,28 +85,3 @@ public class MainActivity extends AppCompatActivity   {
     }
 }
 
-
-     /*      Element durch Button in Liste hinzufügen
-
-        Button btnAdd = (Button) findViewById(R.id.btnAdd);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText edit = (EditText) findViewById(R.id.txtItem);
-                list.add(edit.getText().toString());
-                edit.setText("");
-                adapter.notifyDataSetChanged();
-            }
-        });
-        */
-
-            /* Array Ausslesen
-
-        lv01 = (ListView) findViewById(R.id.lv01);
-        final List<String> liste = new ArrayList<String>(Arrays.asList(aktienliste));
-
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
-                (this, android.R.layout.simple_list_item_1, liste);
-
-        lv01.setAdapter(arrayAdapter);
-*/
