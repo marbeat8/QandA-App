@@ -2,17 +2,25 @@ package com.example.marcusmller.qa_app;
 
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
 
@@ -34,8 +42,11 @@ public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
     public FragenAusDatenbank(ListView listView) {
         this.listView = listView;
     }
-
+    public FragenAusDatenbank(){}
     @Override
+    /**
+     * Ruft die Methoden fuer die Rueckgabe des Strings auf
+     */
     public String doInBackground(String... params) {
         try {
             openConnection();
@@ -45,6 +56,26 @@ public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
         }
 
         return null;
+    }
+
+    /**
+     * Wandelt den JSON String in eine ArrayList um
+     */
+    protected ArrayList<String> jsonToArrList(String response, String column) {
+        ArrayList<String> arrList = new ArrayList<String>();
+        try {
+            JSONArray jArray = new JSONArray(response);
+            for (int i = 0; i < jArray.length(); i++) {
+                JSONObject json_data = jArray.getJSONObject(i);
+                arrList.add(json_data.getString(column));
+            }
+            return arrList;
+
+        } catch (Exception e) {
+            Log.e(TAG, "" + e);
+            arrList.add(e.toString());
+            return arrList;
+        }
     }
 
     /**
@@ -62,7 +93,7 @@ public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
         dataBuffer.append(POST_PARAM_KEYVALUE_SEPARATOR);
         dataBuffer.append(URLEncoder.encode(DESTINATION_METHOD, "UTF-8"));
         //Adresse der PHP Schnittstelle für die Verbindung zur MySQL Datenbank
-        URL url = new URL("http://84.23.78.37/reader.php");
+        URL url = new URL("https://84-23-78-37.blue.kundencontroller.de:8443/reader.php");
         conn = url.openConnection();
         conn.setDoOutput(true);
         OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
@@ -106,6 +137,7 @@ public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
     private boolean isBlank(String value){
         return value == null || value.trim().isEmpty();
     }
+
 
 
 }

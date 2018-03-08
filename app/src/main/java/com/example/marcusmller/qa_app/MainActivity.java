@@ -4,30 +4,18 @@ package com.example.marcusmller.qa_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.app.SearchManager;
-import android.widget.Filter;
-import android.widget.SearchView;
-import android.widget.SearchView.OnQueryTextListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  {
-
-
-    private SearchView searchView;
-    private MenuItem searchMenuItem;
-
+public class MainActivity extends AppCompatActivity   {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,29 +66,11 @@ public class MainActivity extends AppCompatActivity  {
     //Toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        MenuItem item = menu.findItem(R.id.search);
-
-        SearchView searchView = (SearchView) item.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                FragmentTwo.adapter.getFilter().filter(newText);
-                FragmentOne.adapter.getFilter().filter(newText);
-                return false;
-            }
-
-        });
-
-        return super.onCreateOptionsMenu(menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
+
 
     //Itemauswahl in der Toolbar
     @Override
@@ -114,3 +84,29 @@ public class MainActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
 }
+
+
+     /*      Element durch Button in Liste hinzufügen
+
+        Button btnAdd = (Button) findViewById(R.id.btnAdd);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText edit = (EditText) findViewById(R.id.txtItem);
+                list.add(edit.getText().toString());
+                edit.setText("");
+                adapter.notifyDataSetChanged();
+            }
+        });
+        */
+
+            /* Array Ausslesen
+
+        lv01 = (ListView) findViewById(R.id.lv01);
+        final List<String> liste = new ArrayList<String>(Arrays.asList(aktienliste));
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_list_item_1, liste);
+
+        lv01.setAdapter(arrayAdapter);
+*/

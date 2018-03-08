@@ -76,12 +76,12 @@ public class Login extends AppCompatActivity {
                 params.put("password", eingabePass);
 
                 String url = "https://webmail.stud.hwr-berlin.de/ajax/login?action=login";
-                Connection t = new Connection(url,params);
-                String test=t.doInBackground();
-                if(test.toLowerCase().contains("error")){
+                Connection connLogin = new Connection(url,params);
+                String login=connLogin.doInBackground();
+                if(login.toLowerCase().contains("error")){
                     // eigentlich ! fuer test ohne !if(!test.toLowerCase().contains("error")){
                     // Login erfogreich
-                    startActivity(new Intent(Login.this, MainActivity.class));      //Auffruf der neunenActivity
+                    startActivity(new Intent(Login.this, MainActivity.class));      //Aufruf der neuen Activity
                     finish();
                 }
 
