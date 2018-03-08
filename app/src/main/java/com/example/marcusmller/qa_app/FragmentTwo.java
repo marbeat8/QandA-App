@@ -13,8 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
-
 import java.util.ArrayList;
 
 public class FragmentTwo extends Fragment implements View.OnClickListener {
@@ -67,6 +65,7 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
+
                             }
                         });
                 AlertDialog alert11 = builder1.create();

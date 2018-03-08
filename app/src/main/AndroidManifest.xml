@@ -13,7 +13,12 @@
         android:linksClickable="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity" />
+            android:name=".MainActivity">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable">
+            </meta-data>
+        </activity>
         <activity
             android:name=".FrageStellen"
             android:theme="@style/AppTheme.CustomTheme" />
@@ -34,11 +39,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".About"
             android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".FragmentOne" />
-        <activity android:name=".FragmentTwo"/>
+        <activity android:name=".FragmentTwo">
+
+        </activity>
+
         <activity android:name=".AddLink"
             android:theme="@style/AppTheme.CustomTheme">
         </activity>

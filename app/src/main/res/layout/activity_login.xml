@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="com.example.marcusmller.qa_app.Login">
 
     <TextView
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="23dp"
         android:text="Willkommen"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="30sp"
@@ -22,9 +23,9 @@
         android:id="@+id/editTextMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="98dp"
+        android:layout_alignLeft="@+id/editTextPass"
+        android:layout_alignStart="@+id/editTextPass"
+        android:layout_below="@+id/imageView"
         android:ems="10"
         android:hint="E-Mail"
         android:inputType="textEmailAddress" />
@@ -59,4 +60,14 @@
         android:layout_alignEnd="@+id/editTextPass"
         android:layout_alignRight="@+id/editTextPass"
         android:text="Anmelden" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/qanda" />
 </RelativeLayout>
