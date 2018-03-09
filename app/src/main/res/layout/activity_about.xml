@@ -18,7 +18,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+        app:srcCompat="@drawable/mr_dialog_close_light" />
 
     <TextView
         android:id="@+id/txtAbout"

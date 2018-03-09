@@ -25,7 +25,6 @@ public class FragmentOne extends Fragment implements View.OnClickListener {
    static ArrayList<String> list = new ArrayList<String>();
    static ArrayAdapter<String> adapter;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,18 +46,13 @@ public class FragmentOne extends Fragment implements View.OnClickListener {
                 listPosition = position;
                 Intent intent = new Intent(getActivity(), Antwort.class);
                 startActivity(intent);
-
             }
         });
 
         Button b = v.findViewById(R.id.btnFrage);
         b.setOnClickListener(this);
         return v;
-
     }
-
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -66,8 +60,6 @@ public class FragmentOne extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), FrageStellen.class);
                 startActivity(intent);
             break;
-
-
         }
     }
 }

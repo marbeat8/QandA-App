@@ -2,7 +2,6 @@
     <string name="app_name">QandA App</string>
     <string name="action_settings">Settings</string>
     <string name="action_about">About Us</string>
-    <string name="ueberuns">Über uns</string>
     <string name="logo_desc">App logo</string>
     <string name="action_daten_aktualisieren">menu</string>
     <string name="hintTxtItem">eingabe</string>
@@ -11,4 +10,6 @@
     <string name="addLink">Link hinzufügen</string>
     <string name="cancle">Abbrechen</string>
     <string name="search_title">Suche</string>
+    <string name="action_bewerten">App bewerten</string>
+    <string name="action_refresh">Aktualisieren</string>
 </resources>

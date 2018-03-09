@@ -20,7 +20,6 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
     public FragmentTwo() {
         // Required empty public constructor
     }
-
     ListView lvLink;
     static int listPosition;
     static ArrayList<String> list = new ArrayList<String>();

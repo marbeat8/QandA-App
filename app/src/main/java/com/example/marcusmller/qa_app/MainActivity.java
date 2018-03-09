@@ -2,6 +2,7 @@ package com.example.marcusmller.qa_app;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.widget.SearchView;
-
 
 public class MainActivity extends AppCompatActivity   {
 
@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity   {
         //Fragen aus Datenbank laden
         getQuestionFromDB();
     }
-
     //Fragen aus DB laden
     private void getQuestionFromDB(){
         FragenAusDatenbank dbAbfrage = new FragenAusDatenbank();
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity   {
             FragmentOne.list.add(arrListFragenUser.get(i)+" am DatumFehltNoch:\n"+arrListFrage.get(i));
         }
     }
-
     // Adapter for the viewpager using FragmentPagerAdapter
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -96,20 +94,21 @@ public class MainActivity extends AppCompatActivity   {
         inflater.inflate(R.menu.menu_main, menu);
         MenuItem item =menu.findItem(R.id.search);
         SearchView searchView =(SearchView)item.getActionView();
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 FragmentOne.adapter.getFilter().filter(newText);
                 FragmentTwo.adapter.getFilter().filter(newText);
-                return false;
+
+               return false;
             }
         });
+
         return super.onCreateOptionsMenu(menu);
     }
     //Itemauswahl in der Toolbar
@@ -120,6 +119,14 @@ public class MainActivity extends AppCompatActivity   {
         if (id == R.id.about) {
             //öffne Fenster AboutUS
             startActivity(new Intent(MainActivity.this, About.class));
+        }
+        if (id == R.id.bewerten) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLScxqs3RL82bOAAVEUb4T5qZilYdpIKSnDRU1QlVdd_9zmvyzw/viewform?usp=sf_link"));
+            startActivity(browserIntent);           // Browser oeffnen
+        }
+        if (id == R.id.refresh) {
+            FragmentOne.adapter.notifyDataSetChanged();
+            FragmentTwo.adapter.notifyDataSetChanged();
         }
         return super.onOptionsItemSelected(item);
     }
