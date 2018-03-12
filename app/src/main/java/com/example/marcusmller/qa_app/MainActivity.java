@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity   {
         }
     }
     //Fragen aus DB laden
-    private static void getQuestionFromDB() throws ParseException {
+    private void getQuestionFromDB() throws ParseException {
         try {
             //Fuer Fragen
             FragenAusDatenbank dbAbfrage = new FragenAusDatenbank("https://84-23-78-37.blue.kundencontroller.de:8443/reader.php");
@@ -83,10 +83,10 @@ public class MainActivity extends AppCompatActivity   {
                     int indexOfAnswer = arrListAWFrageID.indexOf(arrListID.get(i));
                     //Datum umwandeln dazu erst aus DB auslesen und anschliessend ins richtige Format umwandeln
                     SimpleDateFormat dateFormatAW = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                    Date dateAW = dateFormat.parse(arrListZeit.get(indexOfAnswer));
+                    Date dateAW = dateFormat.parse(arrListAWTime.get(indexOfAnswer));
                     SimpleDateFormat dateFormatGerAW = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMANY);
                     //Frage und Antwort aus DB in Liste schreiben
-                    FragmentOne.list.add(arrListFragenUser.get(i) + " am " + dateFormatGer.format(date) + " Uhr:\n" + arrListFrage.get(i)+ " ✔" + "\n\r am " +dateFormatGerAW.format(dateAW)+ " Uhr ⇒ " + arrListAWAntwort.get(indexOfAnswer) + " (" + arrListAWUser.get(indexOfAnswer) + ")");
+                    FragmentOne.list.add(arrListFragenUser.get(i) + " am " + dateFormatGerAW.format(dateAW) + " Uhr:\n" + arrListFrage.get(i)+ " ✔" + "\n\r am " +dateFormatGerAW.format(dateAW)+ " Uhr ⇒ " + arrListAWAntwort.get(indexOfAnswer) + " (" + arrListAWUser.get(indexOfAnswer) + ")");
                 }
                 else {
                     //Frage aus db in Liste schreiben
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity   {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void refreshListview(){
+    protected void refreshListview(){
         FragmentOne.adapter.clear();
         try {
             getQuestionFromDB();

@@ -9,9 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import static android.content.ContentValues.TAG;
 
@@ -46,7 +49,6 @@ public class FrageStellen extends AppCompatActivity {
                 Sender s = new Sender(urlAddress, frage,user);
                 s.execute();
                 finish();
-                MainActivity.refreshListview();
             }
         });
 
@@ -54,7 +56,6 @@ public class FrageStellen extends AppCompatActivity {
         imageBtnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
             }
         });
