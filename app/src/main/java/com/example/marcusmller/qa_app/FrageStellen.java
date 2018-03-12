@@ -3,22 +3,28 @@ package com.example.marcusmller.qa_app;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import static android.content.ContentValues.TAG;
 
 public class FrageStellen extends AppCompatActivity {
 
     Button btnFrageStellen;
     ImageButton imageBtnClose;
     EditText editText01;
+    String urlAddress = "https://84-23-78-37.blue.kundencontroller.de:8443/sendQuestion.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragestellen);
 
@@ -35,11 +41,12 @@ public class FrageStellen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                FragmentOne.list.add(Login.eingabeMail+" am "+dayofmonth+"."+dayofweek+"."+year+":\n"+editText01.getText().toString());  //Frage in Liste stellen (bzw. aus datenbank lesen und in liste stellen)
-                editText01.setText("");
-                FragmentOne.adapter.notifyDataSetChanged();
-
+                String user = Login.eingabeMail.toString();
+                String frage = editText01.getText().toString();
+                Sender s = new Sender(urlAddress, frage,user);
+                s.execute();
                 finish();
+                MainActivity.refreshListview();
             }
         });
 
