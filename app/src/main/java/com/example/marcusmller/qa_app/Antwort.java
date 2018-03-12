@@ -10,6 +10,7 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ public class Antwort extends AppCompatActivity {
     Button btnSave;
     Button buttonAbbrechen;
     EditText editTextAntwort;
+    String urlAddress = "https://84-23-78-37.blue.kundencontroller.de:8443/sendAnswer.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +68,25 @@ public class Antwort extends AppCompatActivity {
 
                 } else {
                     String frage = FragmentOne.list.get(FragmentOne.listPosition);
+                    String antwort = editTextAntwort.getText().toString();
+                    String user = Login.eingabeMail.toString();
                     FragmentOne.list.remove(FragmentOne.listPosition);                //alten eintrag löschen
-                    FragmentOne.list.add(FragmentOne.listPosition, frage + " ✔" + "\n\r" + "⇒ " + editTextAntwort.getText().toString() + " (" + Login.eingabeMail + ")");    // neuen eintrage hinzufügen
+                    FragmentOne.list.add(FragmentOne.listPosition, frage + " ✔" + "\n\r" + "⇒ " + antwort + " (" + user + ")");    // neuen eintrage hinzufügen
                     editTextAntwort.setText("");                        // clear Textfeld
                     FragmentOne.adapter.notifyDataSetChanged();        // Liste aktualisieren
-
+                    // ID der Frage auslesen
+                    int indexOfDP = frage.indexOf(":\n");
+                    frage = frage.substring(indexOfDP+2);
+                    FragenAusDatenbank dbAbfrage = new FragenAusDatenbank("https://84-23-78-37.blue.kundencontroller.de:8443/reader.php");
+                    String fragenID = "";
+                    dbAbfrage.setDestMethod("selectID");
+                    dbAbfrage.setCOLUMN("FrageID");
+                    dbAbfrage.setTABLE("fragen");
+                    dbAbfrage.setCONDITION("WHERE Frage='"+frage+"'");
+                    fragenID = dbAbfrage.doInBackground();
+                    Log.d("FragenID: ",fragenID);
+                    SenderAnswer s = new SenderAnswer(urlAddress, antwort,user,fragenID);
+                    s.execute();
                     finish();
                 }
             }

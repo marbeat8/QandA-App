@@ -16,14 +16,15 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by Jonas on 12.03.2018.
  */
 
-public class Sender extends AsyncTask<Void,Void,String> {
+public class SenderAnswer extends AsyncTask<Void,Void,String> {
     String urlAddress;
-    String frage,user;
+    String antwort,user,frageID;
 
-    public Sender(String urlAdress,String frage, String user){
+    public SenderAnswer(String urlAdress,String antwort, String user, String frageID){
         this.urlAddress = urlAdress;
-        this.frage = frage;
+        this.antwort = antwort;
         this.user = user;
+        this.frageID = frageID;
     }
     @Override
     protected String doInBackground(Void... params) {
@@ -39,7 +40,7 @@ public class Sender extends AsyncTask<Void,Void,String> {
             OutputStream outStr = con.getOutputStream();
             //Write
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(outStr,"UTF-8"));
-            bw.write(new DataPackagerQuestion(frage,user).packData());
+            bw.write(new DataPackagerAnswer(antwort, user,frageID).packData());
 
             //Release
             bw.flush();
