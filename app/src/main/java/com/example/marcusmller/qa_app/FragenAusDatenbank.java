@@ -48,6 +48,9 @@ public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
     protected void setTABLE(String table){ TABLE = table; }
     protected void setCONDITION(String conditionn){ CONDITION = conditionn; }
     protected String getDestinationMethod() { return DESTINATION_METHOD; }
+    protected String getCOLUMN() { return COLUMN; }
+    protected String getTABLE() { return TABLE; }
+    protected String getCONDITION() { return CONDITION; }
 
     @Override
     /**

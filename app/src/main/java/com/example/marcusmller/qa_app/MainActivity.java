@@ -23,6 +23,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity   {
@@ -87,12 +89,15 @@ public class MainActivity extends AppCompatActivity   {
                     SimpleDateFormat dateFormatGerAW = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMANY);
                     //Frage und Antwort aus DB in Liste schreiben
                     FragmentOne.list.add(arrListFragenUser.get(i) + " am " + dateFormatGer.format(date) + " Uhr:\n" + arrListFrage.get(i)+ " ✔" + "\n\r am " +dateFormatGerAW.format(dateAW)+ " Uhr ⇒ " + arrListAWAntwort.get(indexOfAnswer) + " (" + arrListAWUser.get(indexOfAnswer) + ")");
+                    //FragmentOne.adapter.add(arrListFragenUser.get(i) + " am " + dateFormatGer.format(date) + " Uhr:\n" + arrListFrage.get(i)+ " ✔" + "\n\r am " +dateFormatGerAW.format(dateAW)+ " Uhr ⇒ " + arrListAWAntwort.get(indexOfAnswer) + " (" + arrListAWUser.get(indexOfAnswer) + ")");
                 }
                 else {
                     //Frage aus db in Liste schreiben
                     FragmentOne.list.add(arrListFragenUser.get(i) + " am " + dateFormatGer.format(date) + " Uhr:\n" + arrListFrage.get(i));
+                    //FragmentOne.adapter.add(arrListFragenUser.get(i) + " am " + dateFormatGer.format(date) + " Uhr:\n" + arrListFrage.get(i));
                 }
             }
+
         }
         catch (ParseException pE) {
             Log.d("Error",pE.getMessage().toString());
@@ -172,9 +177,11 @@ public class MainActivity extends AppCompatActivity   {
     }
 
     protected void refreshListview(){
-        FragmentOne.adapter.clear();
         try {
+            FragmentOne.list.clear();
+            FragmentOne.adapter.clear();
             getQuestionFromDB();
+            FragmentOne.adapter.notifyDataSetChanged();
         } catch (ParseException e) {
             e.printStackTrace();
         }

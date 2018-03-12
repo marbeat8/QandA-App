@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.app.ActionBar;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 public class Antwort extends AppCompatActivity {
     final Context context = this;
     TextView txtViewAntwort2;
@@ -84,8 +86,10 @@ public class Antwort extends AppCompatActivity {
                     dbAbfrage.setTABLE("fragen");
                     dbAbfrage.setCONDITION("WHERE Frage='"+frage+"'");
                     fragenID = dbAbfrage.doInBackground();
-                    Log.d("FragenID: ",fragenID);
-                    SenderAnswer s = new SenderAnswer(urlAddress, antwort,user,fragenID);
+                    ArrayList<String> arrListFrageID = new ArrayList<String>();
+                    arrListFrageID = dbAbfrage.jsonToArrList(fragenID,"FrageID");
+                    Log.d("FragenID2: ",arrListFrageID.get(0));
+                    SenderAnswer s = new SenderAnswer(urlAddress, antwort,user,arrListFrageID.get(0));
                     s.execute();
                     finish();
                 }
@@ -103,9 +107,9 @@ public class Antwort extends AppCompatActivity {
 
 
         // Auf welche Frage wird geantwortet!
-        String frage = String.valueOf(FragmentOne.list.get(FragmentOne.listPosition));
-        txtViewAntwort2 = (TextView) findViewById(R.id.txtViewAntwort2);
-        txtViewAntwort2.setText(frage);
+        //String frage = String.valueOf(FragmentOne.list.get(FragmentOne.listPosition));
+        //txtViewAntwort2 = (TextView) findViewById(R.id.txtViewAntwort2);
+        //txtViewAntwort2.setText(frage);
 
 }
     public boolean onOptionsItemSelected(MenuItem item) {
