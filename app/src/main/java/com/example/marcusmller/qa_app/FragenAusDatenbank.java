@@ -30,19 +30,15 @@ public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
     public static final String POST_PARAM_SEPARATOR = "&";
 
     private static final String DESTINATION_METHOD = "allEntrys";
+    private String url = "";
 
     private ArrayAdapter arrayAdapter;
-    private TextView textView;
-    private ListView listView;
     private  URLConnection conn;
 
-    public FragenAusDatenbank(TextView textView) {
-        this.textView = textView;
+    public FragenAusDatenbank(String urlTmp) {
+        this.url = urlTmp;
     }
-    public FragenAusDatenbank(ListView listView) {
-        this.listView = listView;
-    }
-    public FragenAusDatenbank(){}
+    public FragenAusDatenbank(){ this.url = "https://84-23-78-37.blue.kundencontroller.de:8443/reader.php";}
     @Override
     /**
      * Ruft die Methoden fuer die Rueckgabe des Strings auf
@@ -57,7 +53,9 @@ public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
 
         return null;
     }
-
+    public void setURL(String urlTmp){
+        this.url = urlTmp;
+    }
     /**
      * Wandelt den JSON String in eine ArrayList um
      */
@@ -72,7 +70,7 @@ public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
             return arrList;
 
         } catch (Exception e) {
-            Log.e(TAG, "" + e);
+            e.printStackTrace();
             arrList.add(e.toString());
             return arrList;
         }
@@ -93,7 +91,7 @@ public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
         dataBuffer.append(POST_PARAM_KEYVALUE_SEPARATOR);
         dataBuffer.append(URLEncoder.encode(DESTINATION_METHOD, "UTF-8"));
         //Adresse der PHP Schnittstelle für die Verbindung zur MySQL Datenbank
-        URL url = new URL("https://84-23-78-37.blue.kundencontroller.de:8443/reader.php");
+        URL url = new URL(this.url);
         conn = url.openConnection();
         conn.setDoOutput(true);
         OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
@@ -123,7 +121,7 @@ public class FragenAusDatenbank extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         if(!isBlank(result)) {
             //String[] arr = result.split("\\|");
-            this.textView.setText(result);
+
             String[] rarray= result.split("\\|",-1);
             //arrayAdapter = new ArrayAdapter(this, R.layout.activity_main, rarray);
             //ArrayAdapter<String> adapter;

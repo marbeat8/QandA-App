@@ -2,6 +2,9 @@ package com.example.marcusmller.qa_app;
 
 
 import android.content.Intent;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -16,7 +19,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import android.widget.SearchView;
 
@@ -39,23 +44,58 @@ public class MainActivity extends AppCompatActivity   {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         //Fragen aus Datenbank laden
-        getQuestionFromDB();
+        try {
+            getQuestionFromDB();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
     //Fragen aus DB laden
-    private void getQuestionFromDB(){
-        FragenAusDatenbank dbAbfrage = new FragenAusDatenbank();
-        String dbResponse = "";
-        dbResponse = dbAbfrage.doInBackground();
-        ArrayList<String> arrListFrage,arrListFragenUser = new ArrayList<String>();
-        arrListFragenUser = dbAbfrage.jsonToArrList(dbResponse,"User");
-        arrListFrage = dbAbfrage.jsonToArrList(dbResponse,"Frage");
-        Log.d("Test: ",""+arrListFrage.size());
-        for(String str : arrListFragenUser){
-            Log.d("Test: ",str);
+    private static void getQuestionFromDB() throws ParseException {
+        try {
+            //Fuer Fragen
+            FragenAusDatenbank dbAbfrage = new FragenAusDatenbank("https://84-23-78-37.blue.kundencontroller.de:8443/reader.php");
+            String dbResponse = "";
+            dbResponse = dbAbfrage.doInBackground();
+            //ArrayListen fuer Fragen
+            ArrayList<String> arrListFrage, arrListFragenUser, arrListZeit, arrListID = new ArrayList<String>();
+            arrListFragenUser = dbAbfrage.jsonToArrList(dbResponse, "User");
+            arrListFrage = dbAbfrage.jsonToArrList(dbResponse, "Frage");
+            arrListZeit = dbAbfrage.jsonToArrList(dbResponse, "time");
+            arrListID = dbAbfrage.jsonToArrList(dbResponse, "FrageID");
+            //Fuer Antworten
+            dbAbfrage.setURL("https://84-23-78-37.blue.kundencontroller.de:8443/getAnswer.php");
+            dbResponse = dbAbfrage.doInBackground();
+            //ArrayListen fuer Antworten
+            ArrayList<String> arrListAWFrageID,arrListAWAntwort,arrListAWUser, arrListAWTime= new ArrayList<String>();
+            arrListAWAntwort = dbAbfrage.jsonToArrList(dbResponse,"Antwort");
+            arrListAWUser = dbAbfrage.jsonToArrList(dbResponse,"User");
+            arrListAWFrageID = dbAbfrage.jsonToArrList(dbResponse,"FrageID");
+            arrListAWTime = dbAbfrage.jsonToArrList(dbResponse,"time");
+            for (int i = 0; i < arrListFrage.size(); i++) {
+                //Datum umwandeln dazu erst aus DB auslesen und anschliessend ins richtige Format umwandeln
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                Date date = dateFormat.parse(arrListZeit.get(i));
+                SimpleDateFormat dateFormatGer = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMANY);
+                //Pruefen ob es eine Antwort fuer die Frage gibt
+                if (arrListAWFrageID.contains(arrListID.get(i)) )
+                {
+                    int indexOfAnswer = arrListAWFrageID.indexOf(arrListID.get(i));
+                    //Datum umwandeln dazu erst aus DB auslesen und anschliessend ins richtige Format umwandeln
+                    SimpleDateFormat dateFormatAW = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                    Date dateAW = dateFormat.parse(arrListZeit.get(indexOfAnswer));
+                    SimpleDateFormat dateFormatGerAW = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMANY);
+                    //Frage und Antwort aus DB in Liste schreiben
+                    FragmentOne.list.add(arrListFragenUser.get(i) + " am " + dateFormatGer.format(date) + " Uhr:\n" + arrListFrage.get(i)+ " ✔" + "\n\r am " +dateFormatGerAW.format(dateAW)+ " Uhr ⇒ " + arrListAWAntwort.get(indexOfAnswer) + " (" + arrListAWUser.get(indexOfAnswer) + ")");
+                }
+                else {
+                    //Frage aus db in Liste schreiben
+                    FragmentOne.list.add(arrListFragenUser.get(i) + " am " + dateFormatGer.format(date) + " Uhr:\n" + arrListFrage.get(i));
+                }
+            }
         }
-        for(int i =0;i<arrListFrage.size(); i++){
-            //Frage aus db in Liste schreiben
-            FragmentOne.list.add(arrListFragenUser.get(i)+" am DatumFehltNoch:\n"+arrListFrage.get(i));
+        catch (ParseException pE) {
+            Log.d("Error",pE.getMessage().toString());
         }
     }
     // Adapter for the viewpager using FragmentPagerAdapter
@@ -124,13 +164,20 @@ public class MainActivity extends AppCompatActivity   {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLScxqs3RL82bOAAVEUb4T5qZilYdpIKSnDRU1QlVdd_9zmvyzw/viewform?usp=sf_link"));
             startActivity(browserIntent);           // Browser oeffnen
         }
-        //Aktualiesieren
+        //Aktualisieren
         if (id == R.id.refresh) {
-
-
-
+            refreshListview();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void refreshListview(){
+        FragmentOne.adapter.clear();
+        try {
+            getQuestionFromDB();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
 
