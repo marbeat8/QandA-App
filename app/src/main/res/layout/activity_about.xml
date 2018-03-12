@@ -30,6 +30,7 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+
     <TextView
         android:id="@+id/txtAbout3"
         android:layout_width="match_parent"
