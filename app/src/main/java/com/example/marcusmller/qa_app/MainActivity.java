@@ -124,9 +124,11 @@ public class MainActivity extends AppCompatActivity   {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLScxqs3RL82bOAAVEUb4T5qZilYdpIKSnDRU1QlVdd_9zmvyzw/viewform?usp=sf_link"));
             startActivity(browserIntent);           // Browser oeffnen
         }
+        //Aktualiesieren
         if (id == R.id.refresh) {
-            FragmentOne.adapter.notifyDataSetChanged();
-            FragmentTwo.adapter.notifyDataSetChanged();
+
+
+
         }
         return super.onOptionsItemSelected(item);
     }
