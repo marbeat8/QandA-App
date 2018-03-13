@@ -72,7 +72,7 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
             }
         });
 
-        Button b = v.findViewById(R.id.btnLink);
+        Button b = v.findViewById(R.id.btnAnswere);
         b.setOnClickListener(this);
         return v;
 
@@ -80,7 +80,7 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btnLink:
+            case R.id.btnAnswere:
                 Intent intent = new Intent(getActivity(), AddLink.class);
                 startActivity(intent);
                 break;

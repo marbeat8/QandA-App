@@ -180,8 +180,8 @@ public class MainActivity extends AppCompatActivity   {
     public static void refreshListview(){
         FragmentOne.adapter.clear();
         try {
-            FragmentOne.list.clear();
-            FragmentOne.adapter.clear();
+           FragmentOne.list.clear();
+           FragmentOne.adapter.clear();
             getQuestionFromDB();
             FragmentOne.adapter.notifyDataSetChanged();
         } catch (ParseException e) {

@@ -15,10 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.app.ActionBar;
-import android.view.MenuItem;
 
 import java.util.ArrayList;
 
@@ -45,7 +42,7 @@ public class Antwort extends AppCompatActivity {
 
         editTextAntwort = (EditText) findViewById(R.id.editTextAntwort);
 
-        btnSave = (Button) findViewById(R.id.btnLink);
+        btnSave = (Button) findViewById(R.id.btnAnswere);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

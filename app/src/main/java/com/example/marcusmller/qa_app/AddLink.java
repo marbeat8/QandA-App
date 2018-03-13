@@ -27,7 +27,7 @@ public class AddLink extends AppCompatActivity {
         editTextLink01 = (EditText) findViewById(R.id.editTextLink01);
         editTextLink02 = (EditText) findViewById(R.id.editTextLink02);
 
-        btnLink = (Button) findViewById(R.id.btnLink);
+        btnLink = (Button) findViewById(R.id.btnAnswere);
         btnLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

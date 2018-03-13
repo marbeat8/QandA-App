@@ -36,14 +36,14 @@
         android:id="@+id/editTextAntwort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btnLink"
+        android:layout_above="@+id/btnAnswere"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="33dp"
         android:ems="10"
         android:inputType="text" />
 
     <Button
-        android:id="@+id/btnLink"
+        android:id="@+id/btnAnswere"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
