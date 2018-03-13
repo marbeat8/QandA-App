@@ -26,6 +26,7 @@
         android:layout_alignLeft="@+id/editTextPass"
         android:layout_alignStart="@+id/editTextPass"
         android:layout_below="@+id/imageView"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="E-Mail"
         android:inputType="textEmailAddress" />
@@ -63,11 +64,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editTextMail"
+        android:layout_alignRight="@+id/editTextMail"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/qanda" />
+        android:layout_marginTop="45dp"
+        app:srcCompat="@drawable/logo2" />
 </RelativeLayout>
