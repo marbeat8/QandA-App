@@ -109,9 +109,9 @@ public class Antwort extends AppCompatActivity {
 
 
         // Auf welche Frage wird geantwortet!
-        //String frage = String.valueOf(FragmentOne.list.get(FragmentOne.listPosition));
-        //txtViewAntwort2 = (TextView) findViewById(R.id.txtViewAntwort2);
-        //txtViewAntwort2.setText(frage);
+        String frage = String.valueOf(FragmentOne.list.get(FragmentOne.listPosition));
+        txtViewAntwort2 = (TextView) findViewById(R.id.txtViewAntwort2);
+        txtViewAntwort2.setText(frage);
 
 }
     public boolean onOptionsItemSelected(MenuItem item) {
