@@ -17,7 +17,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class Antwort extends AppCompatActivity {
     final Context context = this;
@@ -70,7 +73,9 @@ public class Antwort extends AppCompatActivity {
                     String antwort = editTextAntwort.getText().toString();
                     String user = Login.eingabeMail.toString();
                     FragmentOne.list.remove(FragmentOne.listPosition);                //alten eintrag löschen
-                    FragmentOne.list.add(FragmentOne.listPosition, frage + " ✔" + "\n\r" + "⇒ " + antwort + " (" + user + ")");    // neuen eintrage hinzufügen
+                    SimpleDateFormat dateFormatGer = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMANY);
+                    String date = dateFormatGer.format(new Date());
+                    FragmentOne.list.add(FragmentOne.listPosition, frage + " ✔" + "\n\r am " +date+ " Uhr ⇒ "+ antwort + " (" + user + ")");    // neuen eintrage hinzufügen
                     editTextAntwort.setText("");                        // clear Textfeld
                     FragmentOne.adapter.notifyDataSetChanged();        // Liste aktualisieren
                     // ID der Frage auslesen
