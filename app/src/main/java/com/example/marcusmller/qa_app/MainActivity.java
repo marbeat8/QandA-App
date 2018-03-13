@@ -43,15 +43,20 @@ public class MainActivity extends AppCompatActivity   {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
         //Fragen aus Datenbank laden
         try {
             getQuestionFromDB();
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+
+
+
     }
     //Fragen aus DB laden
-    private void getQuestionFromDB() throws ParseException {
+    private static void getQuestionFromDB() throws ParseException {
         try {
             //Fuer Fragen
             FragenAusDatenbank dbAbfrage = new FragenAusDatenbank("https://84-23-78-37.blue.kundencontroller.de:8443/reader.php");
@@ -171,7 +176,7 @@ public class MainActivity extends AppCompatActivity   {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void refreshListview(){
+    public static void refreshListview(){
         FragmentOne.adapter.clear();
         try {
             getQuestionFromDB();

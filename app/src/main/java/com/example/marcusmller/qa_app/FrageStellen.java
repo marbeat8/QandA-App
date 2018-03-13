@@ -48,6 +48,8 @@ public class FrageStellen extends AppCompatActivity {
                 String frage = editText01.getText().toString();
                 Sender s = new Sender(urlAddress, frage,user);
                 s.execute();
+                MainActivity.refreshListview();
+                MainActivity.refreshListview();
                 finish();
             }
         });
