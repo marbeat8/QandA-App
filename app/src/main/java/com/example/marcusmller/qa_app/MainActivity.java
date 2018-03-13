@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity   {
         try {
             //Fuer Fragen
             FragenAusDatenbank dbAbfrage = new FragenAusDatenbank("https://84-23-78-37.blue.kundencontroller.de:8443/reader.php");
+            dbAbfrage.setDestMethod("allEntrys");
+            dbAbfrage.setCOLUMN("");
+            dbAbfrage.setTABLE("");
+            dbAbfrage.setCONDITION("");
             String dbResponse = "";
             dbResponse = dbAbfrage.doInBackground();
             //ArrayListen fuer Fragen

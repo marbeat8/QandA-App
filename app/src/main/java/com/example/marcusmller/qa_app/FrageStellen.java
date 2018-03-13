@@ -48,6 +48,10 @@ public class FrageStellen extends AppCompatActivity {
                 String frage = editText01.getText().toString();
                 Sender s = new Sender(urlAddress, frage,user);
                 s.execute();
+                SimpleDateFormat dateFormatGer = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMANY);
+                String date = dateFormatGer.format(new Date());
+                FragmentOne.list.add(user + " am " + date + " Uhr:\n" + frage);
+                FragmentOne.adapter.notifyDataSetChanged();
                 finish();
             }
         });
