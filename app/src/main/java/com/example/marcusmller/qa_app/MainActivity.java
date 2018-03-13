@@ -23,6 +23,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity   {
@@ -50,10 +52,6 @@ public class MainActivity extends AppCompatActivity   {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
-
-
     }
     //Fragen aus DB laden
     private static void getQuestionFromDB() throws ParseException {
@@ -79,7 +77,7 @@ public class MainActivity extends AppCompatActivity   {
             arrListAWTime = dbAbfrage.jsonToArrList(dbResponse,"time");
             for (int i = 0; i < arrListFrage.size(); i++) {
                 //Datum umwandeln dazu erst aus DB auslesen und anschliessend ins richtige Format umwandeln
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = dateFormat.parse(arrListZeit.get(i));
                 SimpleDateFormat dateFormatGer = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMANY);
                 //Pruefen ob es eine Antwort fuer die Frage gibt
@@ -87,17 +85,20 @@ public class MainActivity extends AppCompatActivity   {
                 {
                     int indexOfAnswer = arrListAWFrageID.indexOf(arrListID.get(i));
                     //Datum umwandeln dazu erst aus DB auslesen und anschliessend ins richtige Format umwandeln
-                    SimpleDateFormat dateFormatAW = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                    Date dateAW = dateFormat.parse(arrListAWTime.get(indexOfAnswer));
+                    SimpleDateFormat dateFormatAW = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Date dateAW = dateFormatAW.parse(arrListAWTime.get(indexOfAnswer));
                     SimpleDateFormat dateFormatGerAW = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMANY);
                     //Frage und Antwort aus DB in Liste schreiben
-                    FragmentOne.list.add(arrListFragenUser.get(i) + " am " + dateFormatGerAW.format(dateAW) + " Uhr:\n" + arrListFrage.get(i)+ " ✔" + "\n\r am " +dateFormatGerAW.format(dateAW)+ " Uhr ⇒ " + arrListAWAntwort.get(indexOfAnswer) + " (" + arrListAWUser.get(indexOfAnswer) + ")");
+                    FragmentOne.list.add(arrListFragenUser.get(i) + " am " + dateFormatGer.format(date) + " Uhr:\n" + arrListFrage.get(i)+ " ✔" + "\n\r am " +dateFormatGerAW.format(dateAW)+ " Uhr ⇒ " + arrListAWAntwort.get(indexOfAnswer) + " (" + arrListAWUser.get(indexOfAnswer) + ")");
+                    //FragmentOne.adapter.add(arrListFragenUser.get(i) + " am " + dateFormatGer.format(date) + " Uhr:\n" + arrListFrage.get(i)+ " ✔" + "\n\r am " +dateFormatGerAW.format(dateAW)+ " Uhr ⇒ " + arrListAWAntwort.get(indexOfAnswer) + " (" + arrListAWUser.get(indexOfAnswer) + ")");
                 }
                 else {
                     //Frage aus db in Liste schreiben
                     FragmentOne.list.add(arrListFragenUser.get(i) + " am " + dateFormatGer.format(date) + " Uhr:\n" + arrListFrage.get(i));
+                    //FragmentOne.adapter.add(arrListFragenUser.get(i) + " am " + dateFormatGer.format(date) + " Uhr:\n" + arrListFrage.get(i));
                 }
             }
+
         }
         catch (ParseException pE) {
             Log.d("Error",pE.getMessage().toString());
@@ -179,7 +180,10 @@ public class MainActivity extends AppCompatActivity   {
     public static void refreshListview(){
         FragmentOne.adapter.clear();
         try {
+            FragmentOne.list.clear();
+            FragmentOne.adapter.clear();
             getQuestionFromDB();
+            FragmentOne.adapter.notifyDataSetChanged();
         } catch (ParseException e) {
             e.printStackTrace();
         }

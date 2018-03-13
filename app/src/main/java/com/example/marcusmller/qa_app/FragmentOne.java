@@ -19,7 +19,7 @@ public class FragmentOne extends Fragment implements View.OnClickListener {
 
    public FragmentOne(){}
 
-    ListView lv01;
+    public ListView lv01;
     static int listPosition;
 
    static ArrayList<String> list = new ArrayList<String>();
